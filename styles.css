@@ -1,9 +1,10 @@
 body{
-    background: radial-gradient(#345,#456,#556);
+    /* background: radial-gradient(#cc2b5e,#753a88) */
 }
 
 .container-fluid{
     padding: 10px;;
+    border: 2px solid black
 }
 
 .box{
@@ -14,9 +15,11 @@ body{
 .btn{
     
     border: 1px solid black !important;
+    
+    
 }
 .col{
-    /* border: 1px solid blue !important; */
+    /* border: 1px solid gray !important; */
 }
 i{
     /* font-size: 2vw; */
