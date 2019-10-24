@@ -1,0 +1,15 @@
+.box{
+    background: gray;
+    height: 50vh;
+    width: 100%;
+}
+.btn{
+    
+    border: 1px solid black !important;
+}
+.col{
+    border: 1px solid blue !important;
+}
+i{
+    font-size: 2vw;
+}
