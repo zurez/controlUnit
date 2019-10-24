@@ -1,3 +1,11 @@
+body{
+    background: radial-gradient(#345,#456,#556);
+}
+
+.container-fluid{
+    padding: 10px;;
+}
+
 .box{
     background: gray;
     height: 50vh;
@@ -8,8 +16,17 @@
     border: 1px solid black !important;
 }
 .col{
-    border: 1px solid blue !important;
+    /* border: 1px solid blue !important; */
 }
 i{
-    font-size: 2vw;
+    /* font-size: 2vw; */
+}
+
+.center{
+    text-align: center;
+}
+
+img{
+    height: 100%;
+    width: 100%;
 }
