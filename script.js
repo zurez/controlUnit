@@ -16,3 +16,5 @@ function receiveUpdate(updateString){
     console.log(updateString);
     
 }
+
+socket.on("update",receiveUpdate);
