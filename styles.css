@@ -1,5 +1,5 @@
 body{
-    /* background: radial-gradient(#cc2b5e,#753a88) */
+    background-color:#948b85;
 }
 
 .container-fluid{
@@ -15,14 +15,20 @@ body{
 .btn{
     
     border: 1px solid black !important;
+    color: white;
     
     
 }
-.col{
+
+.active{
+    background: blue;;
+    color: white;
+}
+/* .col{
     /* border: 1px solid gray !important; */
 }
 i{
-    /* font-size: 2vw; */
+    color:blue;
 }
 
 .center{
