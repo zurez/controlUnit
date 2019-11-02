@@ -21,14 +21,13 @@ body{
 }
 
 .active{
-    background: blue;;
+    background :rgb(34,95,119);
     color: white;
 }
 /* .col{
     /* border: 1px solid gray !important; */
 }
 i{
-    color:blue;
 }
 
 .center{
