@@ -96,53 +96,30 @@ def handle_connection():
 def controlUnit():
     return render_template("index.html")
 
-def read_camera(frameCount = 30):
+def gen():
+    """Video streaming generator function."""
+    global dataFrame
     while True:
-        print("In")
-            
-
-# @socketio.on('getImage')
-
-def generate(pyEmit = emit):
-    
-    outputFrame = None
-    lock = threading.Lock()
-    frame = vs.read()
-    frame = imutils.resize(frame, width=400)
+        frame = vs.read()
+        # frame = imutils.resize(frame, width=400)
         
-    with lock:
-        outputFrame = frame.copy()
-    # loop over frames from the output stream
-    while True:
-
-        if outputFrame is None:
-            continue
-            
-            # encode the frame in JPEG format
-        (flag, encodedImage) = cv2.imencode(".jpg", outputFrame)
-
-            # ensure the frame was successfully encoded
-        if not flag:
-            continue
-        output = b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + bytearray(encodedImage) + b'\r\n'
-        # print(output)
-        pyEmit('usbCamera', json.dumps({"output":"output"}), ignore_queue= True)
-        # yield the output frame in the byte format
-        # yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
-        #     bytearray(encodedImage) + b'\r\n')
-
-
-
-
-
+        (flag, encodedImage) = cv2.imencode(".jpg", frame.copy())
+        if not flag: continue
+        # print (encodedImage)
+        dataFrame = yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + bytearray(encodedImage) + b'\r\n')
+@app.route('/video_feed')
+def video_feed():
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return Response(gen(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 
 if __name__ == '__main__':
-    # t = threading.Thread(target=generate)
-    # t.daemon = True
-    # t.start()
-    socketio.start_background_task(generate,emit)
+  
+    # socketio.start_background_task(gen)
     socketio.run(app,debug=True, use_reloader=False)
+    # app.run(host='0.0.0.0', port =8000, debug=False, threaded=True)
 
-vs.stop()
+# vs.stop()
